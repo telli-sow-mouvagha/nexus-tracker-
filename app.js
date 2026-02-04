@@ -4,7 +4,7 @@ const myContainer = document.querySelector("#ticket-container"); // query (les d
 // Gestion du clic
 myButton.addEventListener('click', ()=> {
     let ticket = document.createElement("div"); // id aléatoire
-    ticket.innerHTML ="Ticket (div)";
+    ticket.textContent ="Ticket (div)";
     ticket.setAttribute("id", "TK-" + Math.floor(Math.random()*999)); // prévoir vérif que ID = unique
     console.log(ticket.id); // debug id
 
