@@ -6,10 +6,12 @@ myButton.addEventListener('click', ()=> {
     let ticket = document.createElement("div"); // id aléatoire
     ticket.textContent ="Ticket (div)";
     ticket.setAttribute("id", "TK-" + Math.floor(Math.random()*999)); // prévoir vérif que ID = unique
+
     console.log("Ticket créé :", ticket.id); // debug id
 
     let delBtn = document.createElement("button"); // bouton supprimer
     delBtn.textContent = "x";
+    delBtn.setAttribute("class","delete");
 
     //delBtn.addEventListener('click', ()=> {
     //    myContainer.removeChild(ticket);
@@ -26,11 +28,16 @@ myButton.addEventListener('click', ()=> {
 myContainer.addEventListener('click', (event)=> {
     // debug : click, event.target, child
     console.log("CLICK : Suppression");
-    // if (event.target)... on vérifie (https://fr.javascript.info/event-delegation creuser ici)
-    let ticket = event.target;
-    console.log("Element cliqué :\n", ticket); // debug event
+    if (event.target.className != "delete") {
+        return;
+    } // on vérifie (https://fr.javascript.info/event-delegation creuser ici)
+    
+    let delBtn = event.target;
+    console.log("Element cliqué :\n", delBtn); // debug event
     // accès au premier enfant
-    console.log("Enfant de l'élément ticket :", ticket.children[0]);
-    myContainer.removeChild(ticket);
+    myContainer.removeChild(delBtn.parentNode);
+    console.log("Enfant sélectionné :", event.target.querySelector("button"));
+    console.log("Type d'évènement :", event.type);
+
     // event.target = <div></> (ticket)
 });
