@@ -9,15 +9,25 @@ myButton.addEventListener('click', ()=> {
     console.log(ticket.id); // debug id
 
     let delBtn = document.createElement("button"); // bouton supprimer
-    delBtn.innerHTML = "x";
+    delBtn.textContent = "x";
 
-    delBtn.addEventListener('click', ()=> {
-        myContainer.removeChild(ticket);
-    })
+    //delBtn.addEventListener('click', ()=> {
+    //    myContainer.removeChild(ticket);
+    //}); // clic = child myContainer delBtn? o/n supprimer ticket
 
     ticket.appendChild(delBtn); // à chaque ticket
     myContainer.appendChild(ticket);  
     
     console.log("CLICK"); // debug bouton
     console.log(myContainer.hasChildNodes()); // debug création div
+});
+
+// Noeud parent fera hériter son EventListener à ses enfants
+myContainer.addEventListener('click', (event)=> {
+    let ticket = event.target;
+    console.log(ticket); // debug event
+    // accès au premier enfant
+    console.log(ticket.children[0]);
+    myContainer.removeChild(ticket);
+    // event.target = <div></> (ticket)
 });
